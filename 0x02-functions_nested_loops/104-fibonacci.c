@@ -58,6 +58,7 @@ void print_fibonacci(int count)
 	int fib1;
 	int fib2;
 	int next;
+	int i;
 
 	fib1 = 1;
 	fib2 = 2;
@@ -65,7 +66,7 @@ void print_fibonacci(int count)
 	print_char(',');
 	print_char(' ');
 	print_number(fib2);
-	for (int i = 2; i < count; i++)
+	for (i = 2; i < count; i++)
 	{
 		next = fib1 + fib2;
 		print_char(',');
