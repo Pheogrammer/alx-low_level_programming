@@ -31,15 +31,11 @@ void printLargeNumber(int num[], int size) {
 }
 
 int main() {
-	int fib1[200];
-	int fib2[200];
-	int sum[200];
 	int i;
 	int j;
-
-   fib1[200] = {0}; 
-    fib2[200] = {0};
-    sum[200] = {0}; 
+unsigned long long fib1[200] = {0};
+unsigned long long fib2[200] = {0};
+unsigned long long sum[200] = {0};
 
     fib1[199] = 1; 
     fib2[199] = 1; 
