@@ -9,3 +9,4 @@ int _isalpha(int c);
 int _putchar(char);
 void print_to_98(int n);
 int print_sign(int n);
+int _abs(int);
