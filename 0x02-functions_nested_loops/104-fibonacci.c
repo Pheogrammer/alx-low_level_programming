@@ -12,7 +12,9 @@ int main(void)
 	  unsigned long divisor;
 	  unsigned long digit;
 
-    a = 1, b = 2, c;
+    a = 1;
+    b = 2;
+    
     int i;
 
     putchar('1');
