@@ -9,6 +9,7 @@ int main(void)
     int count;
     unsigned long i, j, k;
     unsigned long m, n, p, carry;
+unsigned long temp;	
 
     count = 0;
     i = 0;
@@ -20,7 +21,7 @@ int main(void)
         j = k;
         
         
-        unsigned long temp = k;
+         temp = k;
         while (temp > 0)
         {
             putchar('0' + (temp % 10));
@@ -47,7 +48,7 @@ int main(void)
 
         if (p >= 100)
         {
-            unsigned long temp = k;
+            temp = k;
             while (temp > 0)
             {
                 putchar('0' + (temp % 10));
@@ -62,7 +63,7 @@ int main(void)
         }
         else
         {
-            unsigned long temp = k;
+           temp = k;
             while (temp > 0)
             {
                 putchar('0' + (temp % 10));
@@ -83,4 +84,3 @@ int main(void)
     putchar('\n');
     return (0);
 }
-
