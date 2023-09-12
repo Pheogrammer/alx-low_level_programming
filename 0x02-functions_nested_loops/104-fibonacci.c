@@ -7,13 +7,11 @@
  */
 int main(void)
 {
-    unsigned int a[200] = {0};
-    unsigned int b[200] = {0};
-    unsigned int c[200] = {0};
-    unsigned int temp[200] = {0};
-
-    int i, j, carry, leadingZero;
-
+    unsigned int a[100] = {0};
+    unsigned int b[100] = {0};
+    unsigned int c[100] = {0};
+    unsigned int temp[100] = {0};
+	int carry, i, j, leadingZero;
     a[0] = 1;
     b[0] = 1;
 
@@ -25,7 +23,7 @@ int main(void)
         putchar(' ');
 
         carry = 0;
-        for (j = 0; j < 200; j++)
+        for (j = 0; j < 100; j++)
         {
             c[j] = a[j] + b[j] + carry;
             if (c[j] >= 10)
@@ -39,8 +37,8 @@ int main(void)
             }
         }
 
-        leadingZero = 1;
-        for (j = 199; j >= 0; j--)
+        int leadingZero = 1;
+        for (j = 99; j >= 0; j--)
         {
             if (c[j] != 0)
                 leadingZero = 0;
@@ -49,7 +47,7 @@ int main(void)
                 putchar(c[j] + '0');
         }
 
-        for (j = 0; j < 200; j++)
+        for (j = 0; j < 100; j++)
         {
             temp[j] = a[j];
             a[j] = b[j];
