@@ -19,8 +19,8 @@ void print_to_98(int n)
                 temp /= 10;
             }
 
-            putchar(','); // Print the comma
-            putchar(' '); // Print the space
+            putchar(',');
+            putchar(' ');
         }
     }
     else
@@ -34,12 +34,11 @@ void print_to_98(int n)
                 temp /= 10;
             }
 
-            putchar(','); // Print the comma
-            putchar(' '); // Print the space
+            putchar(',');
+            putchar(' ');
         }
     }
 
-    // Print 98 and a newline
     putchar('9');
     putchar('8');
     putchar('\n');
