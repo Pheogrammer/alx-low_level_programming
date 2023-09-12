@@ -14,7 +14,7 @@ void addLargeNumbers(int num1[], int num2[], int result[], int size) {
 
 void printLargeNumber(int num[], int size) {
     int leadingZero;
-    int 1;
+    int i;
 
    leadingZero = 1;
     for (i = 0; i < size; i++) {
