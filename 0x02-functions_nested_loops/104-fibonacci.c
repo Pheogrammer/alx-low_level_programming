@@ -1,78 +1,86 @@
 #include <stdio.h>
 
-#define MAX_DIGITS 200
+/**
+ * main - print the first 98 Fibonacci numbers.
+ * Return: Nothing.
+ */
+int main(void)
+{
+    int count;
+    unsigned long i, j, k;
+    unsigned long m, n, p, carry;
 
-void initialize_number(unsigned int num[]) {
-    int i;
-	for (i = 0; i < MAX_DIGITS; i++) {
-        num[i] = 0;
-    }
-}
-
-void add_numbers(unsigned int result[], unsigned int num1[], unsigned int num2[]) {
-    int carry = 0;
-int i, sum;
-    for (i = 0; i < MAX_DIGITS; i++) {
-        sum = num1[i] + num2[i] + carry;
-        result[i] = sum % 10;
-        carry = sum / 10;
-    }
-}
-
-void copy_number(unsigned int dest[], unsigned int src[]) {
-    int i;
-	for (i = 0; i < MAX_DIGITS; i++) {
-        dest[i] = src[i];
-    }
-}
-
-void print_number(unsigned int num[]) {
-    int leading_zero, i;
-   leading_zero = 1;
-
-    for (i = MAX_DIGITS - 1; i >= 0; i--) {
-        if (num[i] != 0) {
-            leading_zero = 0;
+    count = 0;
+    i = 0;
+    j = 1;
+    for (count = 1; count <= 91; count++)
+    {
+        k = i + j;
+        i = j;
+        j = k;
+        
+        
+        unsigned long temp = k;
+        while (temp > 0)
+        {
+            putchar('0' + (temp % 10));
+            temp /= 10;
         }
-
-        if (!leading_zero) {
-            putchar(num[i] + '0');
-        }
-    }
-
-    if (leading_zero) {
-        putchar('0');
-    }
-}
-
-void print_fibonacci(int count) {
-    unsigned int fib1[MAX_DIGITS];
-    unsigned int fib2[MAX_DIGITS];
-    unsigned int temp[MAX_DIGITS];
-    int i;
-
-    initialize_number(fib1);
-    initialize_number(fib2);
-    fib1[MAX_DIGITS - 1] = 1;
-    fib2[MAX_DIGITS - 1] = 1;
-
-    print_number(fib1);
-
-    for (i = 2; i <= count; i++) {
-        add_numbers(temp, fib1, fib2);
-        copy_number(fib1, fib2);
-        copy_number(fib2, temp);
-
+        
         putchar(',');
         putchar(' ');
-        print_number(fib1);
+    }
+
+    m = i % 1000;
+    i = i / 1000;
+    n = j % 1000;
+    j = j / 1000;
+    while (count <= 98)
+    {
+        carry = (m + n) / 1000;
+        p = (m + n) - carry * 1000;
+        k = (i + j) + carry;
+        m = n;
+        n = p;
+        i = j;
+        j = k;
+
+        if (p >= 100)
+        {
+            unsigned long temp = k;
+            while (temp > 0)
+            {
+                putchar('0' + (temp % 10));
+                temp /= 10;
+            }
+            temp = p;
+            while (temp > 0)
+            {
+                putchar('0' + (temp % 10));
+                temp /= 10;
+            }
+        }
+        else
+        {
+            unsigned long temp = k;
+            while (temp > 0)
+            {
+                putchar('0' + (temp % 10));
+                temp /= 10;
+            }
+            putchar('0' + (p / 10));
+            putchar('0' + (p % 10));
+        }
+
+        if (count != 98)
+        {
+            putchar(',');
+            putchar(' ');
+        }
+        count++;
     }
 
     putchar('\n');
-}
-
-int main(void) {
-    print_fibonacci(100);
-    return 0;
+    return (0);
 }
 
