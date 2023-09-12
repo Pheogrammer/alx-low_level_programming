@@ -8,34 +8,33 @@
 */
 void print_to_98(int n)
 {
-	int step;
-	int digit;
+	int i, num;
 
-	if (n <= 98)
-	{
-		step = 1;
-	}
-	else
-	{
-		step = -1;
-	}
+    if (n <= 98) {
+        for (i = n; i <= 98; i++) {
+            num = i;
+            while (num > 0) {
+                putchar('0' + num % 10);
+                if (i != 98 || num >= 10) {
+                    putchar(',');
+		    putchar(' ');
+                }
+                num /= 10;
+            }
+        }
+    } else {
+        for (i = n; i >= 98; i--) {
+            num = i;
+            while (num > 0) {
+                putchar('0' + num % 10);
+                if (i != 98 || num >= 10) {
+                    putchar(','); 
+                    putchar(' ');
+                }
+                num /= 10;
+            }
+        }
+    }
+    putchar('\n');
 
-	while (n != 98)
-	{
-		if (n < 0)
-		{
-			putchar('-');
-			n *= -1;
-		}
-		digit = n / 10;
-		putchar(digit + '0');
-		digit = n % 10;
-		putchar(digit + '0');
-		putchar(',');
-		putchar(' ');
-		n += step;
-	}
-	putchar('9');
-	putchar('8');
-	putchar('\n');
 }
