@@ -15,7 +15,7 @@ void print_char(char c)
  *
  * @n: The integer to be printed
  */
-void print_number(int n)
+void print_number(long n)
 {
 	char buffer[24];
 	int len;
