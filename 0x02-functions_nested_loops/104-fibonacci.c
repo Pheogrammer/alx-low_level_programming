@@ -1,101 +1,54 @@
-#include <unistd.h>
+#include <stdio.h>
 
 /**
- * print_char - Prints a single character to the standard output
- *
- * @c: The character to be printed
+ * main - print first 98 Fibonacci numbers without using long long, malloc,
+ * pointers, array/tables, or structures
+ * Return: 0
  */
-void print_char(char c)
-{
-	write(1, &c, 1);
-}
 
-/**
- * *add_large_numbers - Adds two large numbers represented as strings
- *
- * @num1: The first number as a string
- * @num2: The second number as a string
- *
- * Returns: The sum as a dynamically allocated string
- */
-char *add_large_numbers(char *num1, char *num2)
-{
-	int len1;
-	int len2;
-	int max_len;
-	int carry;
-	char *result;
-
-	carry = 0;
-	len1 = strlen(num1);
-	len2 = strlen(num2);
-	max_len = (len1 > len2) ? len1 : len2;
-	*result = malloc(max_len + 2);
-
-	if (!result)
-	{
-		perror("Memory allocation failed");
-		exit(EXIT_FAILURE);
-	}
-	result[max_len + 1] = '\0';
-
-	int i;
-	int j;
-	int k;
-
-	for (i = len1 - 1, j = len2 - 1, k = max_len; i >= 0 || j >= 0 || carry > 0; i--, j--, k--)
-	{
-
-		int digit1;
-		int digit2;
-		int sum;
-
-		digit1 = (i >= 0) ? (num1[i] - '0') : 0;
-		digit2 = (j >= 0) ? (num2[j] - '0') : 0;
-		sum = digit1 + digit2 + carry;
-		carry = sum / 10;
-		result[k] = (sum % 10) + '0';
-	}
-	return (result);
-}
-/**
- * print_fibonacci - Prints the first 'count' Fibonacci numbers
- *
- * @count: The number of Fibonacci numbers to print
- */
-void print_fibonacci(int count)
-{
-	int *fib1;
-	int *fib2;
-	char *next;
-	int i;
-
-	fib1 = 1;
-	fib2 = 2;
-	print_char('1');
-	print_char(',');
-	print_char(' ');
-	print_char('2');
-	for (i = 2; i < count; i++)
-	{
-		next = add_large_numbers(fib1, fib2);
-		print_char(',');
-		print_char(' ');
-		write(1, next, strlen(next));
-		free(fib1)
-		fib1 = fib2;
-		fib2 = next;
-	}
-	print_char('\n');
-}
-
-/**
- * main - Entry point of the program
- *
- * Return: Always 0 (Success)
- */
 int main(void)
 {
-	print_fibonacci(98);
+	int counter, overflow, temp;
+	unsigned long a = 1, b = 1, sum = 0;
+	long a_head, a_tail, b_head, b_tail, sum_head, sum_tail;
+
+	putchar('1');
+	for (counter = 2; counter < 93; counter++) /* will still print */
+	{
+		sum = a + b;
+		a = b;
+		b = sum;
+		putchar(',');
+		putchar(' ');
+		while (sum > 0)
+		{
+			putchar('0' + sum % 10);
+			sum /= 10;
+		}
+	}
+	a_head = a / 1000000000; /* break larger num into 2 parts */
+	a_tail = a % 1000000000;
+	b_head = b / 1000000000;
+	b_tail = b % 1000000000;
+	for (; counter < 99; counter++)
+	{
+		overflow = (a_tail + b_tail) / 1000000000;
+		sum_tail = (a_tail + b_tail) - (1000000000 * overflow);
+		sum_head = (a_head + b_head) + overflow;
+		putchar(',');
+		putchar(' ');
+		while (sum_head > 0)
+		{
+			putchar('0' + sum_head % 10);
+			sum_head /= 10;
+		}
+		temp = sum_tail;
+		for (int i = 0; i < 9; i++)
+		{
+			putchar('0' + temp / 100000000);
+			temp %= 100000000;
+		}
+	}
+	putchar('\n');
 	return (0);
 }
