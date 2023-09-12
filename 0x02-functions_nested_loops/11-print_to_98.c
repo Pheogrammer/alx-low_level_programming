@@ -1,40 +1,46 @@
 #include "main.h"
 #include <stdio.h>
+
 /**
-* print_to_98 - prints all natural numbers from @n to 98
-* @n: number to start from
-*
-* Return: Always void
-*/
+ * print_to_98 - print all natural numbers from n to 98.
+ * @n: the number to start counting from to 98
+ * Return: void returns nothing.
+ */
 void print_to_98(int n)
 {
-	int i, num;
+    if (n < 98)
+    {
+        for (n = n; n < 98; n++)
+        {
+            int temp = n;
+            while (temp != 0)
+            {
+                putchar('0' + (temp % 10));
+                temp /= 10;
+            }
 
-    if (n <= 98) {
-        for (i = n; i <= 98; i++) {
-            num = i;
-            while (num > 0) {
-                putchar('0' + num % 10);
-                if (i != 98 || num >= 10) {
-                    putchar(',');
-		    putchar(' ');
-                }
-                num /= 10;
-            }
-        }
-    } else {
-        for (i = n; i >= 98; i--) {
-            num = i;
-            while (num > 0) {
-                putchar('0' + num % 10);
-                if (i != 98 || num >= 10) {
-                    putchar(','); 
-                    putchar(' ');
-                }
-                num /= 10;
-            }
+            putchar(','); // Print the comma
+            putchar(' '); // Print the space
         }
     }
-    putchar('\n');
+    else
+    {
+        for (n = n; n > 98; n--)
+        {
+            int temp = n;
+            while (temp != 0)
+            {
+                putchar('0' + (temp % 10));
+                temp /= 10;
+            }
 
+            putchar(','); // Print the comma
+            putchar(' '); // Print the space
+        }
+    }
+
+    // Print 98 and a newline
+    putchar('9');
+    putchar('8');
+    putchar('\n');
 }
