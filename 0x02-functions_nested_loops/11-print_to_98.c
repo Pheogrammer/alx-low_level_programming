@@ -31,7 +31,8 @@ void print_to_98(int n)
 		putchar(digit + '0');
 		digit = n % 10;
 		putchar(digit + '0');
-		putchar(', ');
+		putchar(',');
+		putchar(' ');
 		n += step;
 	}
 	putchar('9');
