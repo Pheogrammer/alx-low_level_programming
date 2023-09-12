@@ -33,9 +33,9 @@ void printLargeNumber(int num[], int size) {
 int main() {
 	int i;
 	int j;
-unsigned long long fib1[200] = {0};
-unsigned long long fib2[200] = {0};
-unsigned long long sum[200] = {0};
+unsigned long fib1[200] = {0};
+unsigned long fib2[200] = {0};
+unsigned long sum[200] = {0};
 
     fib1[199] = 1; 
     fib2[199] = 1; 
