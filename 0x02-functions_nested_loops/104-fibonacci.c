@@ -1,51 +1,67 @@
 #include <stdio.h>
 
-/**
- * main - Entry point
- *
- * Return: Always 0
- */
-int main(void)
-{
-	 unsigned long a,b,c;
-	  unsigned long temp;
-	  unsigned long divisor;
-	  unsigned long digit;
-	  int i;
 
-    a = 1;
-    b = 2;
-    
-   
+void addLargeNumbers(int num1[], int num2[], int result[], int size) {
+    int carry, i, sum;
+   carry = 0;
+    for (i = size - 1; i >= 0; i--) {
+        sum = num1[i] + num2[i] + carry;
+        result[i] = sum % 10;
+        carry = sum / 10;
+    }
+}
 
-    putchar('1');
-    for (i = 2; i < 98; i++)
-    {
+
+void printLargeNumber(int num[], int size) {
+    int leadingZero;
+   leadingZero = 1;
+   int i;
+    for (i = 0; i < size; i++) {
+        if (num[i] != 0) {
+            leadingZero = 0;
+        }
+        if (!leadingZero) {
+            putchar('0' + num[i]);
+        }
+    }
+    if (leadingZero) {
+        putchar('0'); 
+    }
+}
+
+
+int main() {
+	int fib1[200];
+	int fib2[200];
+	int sum[200];
+
+   fib1[200] = {0}; 
+    fib2[200] = {0};
+    sum[200] = {0}; 
+
+    fib1[199] = 1; 
+    fib2[199] = 1; 
+
+    printLargeNumber(fib1, 200);
+    putchar(','); 
+    putchar(' ');
+    printLargeNumber(fib2, 200);
+int i;
+    for (i = 2; i < 98; i++) {
+        addLargeNumbers(fib1, fib2, sum, 200);
         putchar(',');
         putchar(' ');
-
-        c = a + b;
-        a = b;
-        b = c;
-
-       temp = c;
-         divisor = 1;
-        while (temp >= 10)
-        {
-            temp /= 10;
-            divisor *= 10;
-        }
-
-        while (divisor >= 1)
-        {
-            digit = c / divisor;
-            putchar(digit + '0');
-            c %= divisor;
-            divisor /= 10;
+        printLargeNumber(sum, 200);
+	int j;
+        
+        for (j = 0; j < 200; j++) {
+            fib1[j] = fib2[j];
+            fib2[j] = sum[j];
         }
     }
 
     putchar('\n');
-    return (0);
+
+    return 0;
 }
 
