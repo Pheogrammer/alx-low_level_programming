@@ -37,7 +37,7 @@ int main(void)
             }
         }
 
-        int leadingZero = 1;
+        leadingZero = 1;
         for (j = 99; j >= 0; j--)
         {
             if (c[j] != 0)
