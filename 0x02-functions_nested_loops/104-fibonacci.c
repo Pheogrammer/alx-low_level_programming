@@ -14,8 +14,9 @@ void addLargeNumbers(int num1[], int num2[], int result[], int size) {
 
 void printLargeNumber(int num[], int size) {
     int leadingZero;
+    int 1;
+
    leadingZero = 1;
-   int i;
     for (i = 0; i < size; i++) {
         if (num[i] != 0) {
             leadingZero = 0;
@@ -29,11 +30,12 @@ void printLargeNumber(int num[], int size) {
     }
 }
 
-
 int main() {
 	int fib1[200];
 	int fib2[200];
 	int sum[200];
+	int i;
+	int j;
 
    fib1[200] = {0}; 
     fib2[200] = {0};
@@ -46,13 +48,13 @@ int main() {
     putchar(','); 
     putchar(' ');
     printLargeNumber(fib2, 200);
-int i;
+
     for (i = 2; i < 98; i++) {
         addLargeNumbers(fib1, fib2, sum, 200);
         putchar(',');
         putchar(' ');
         printLargeNumber(sum, 200);
-	int j;
+
         
         for (j = 0; j < 200; j++) {
             fib1[j] = fib2[j];
