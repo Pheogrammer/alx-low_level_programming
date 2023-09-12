@@ -15,12 +15,12 @@ void print_to_98(int n)
             int temp = n;
             while (temp != 0)
             {
-                putchar('0' + (temp % 10));
+                _putchar('0' + (temp % 10));
                 temp /= 10;
             }
 
-            putchar(',');
-            putchar(' ');
+            _putchar(',');
+            _putchar(' ');
         }
     }
     else
@@ -30,16 +30,16 @@ void print_to_98(int n)
             int temp = n;
             while (temp != 0)
             {
-                putchar('0' + (temp % 10));
+                _putchar('0' + (temp % 10));
                 temp /= 10;
             }
 
-            putchar(',');
-            putchar(' ');
+           _putchar(',');
+            _putchar(' ');
         }
     }
 
-    putchar('9');
-    putchar('8');
-    putchar('\n');
+    _putchar('9');
+    _putchar('8');
+    _putchar('\n');
 }
