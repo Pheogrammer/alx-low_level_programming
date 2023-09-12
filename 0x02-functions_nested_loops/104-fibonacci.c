@@ -30,10 +30,11 @@ void print_large_number(unsigned int num) {
  */
 int main(void) {
     unsigned int a = 1, b = 1, sum = 0;
+    int counter;
     unsigned int max_int = -1;
 
     putchar('1');
-    for (int counter = 2; counter < 98; counter++) {
+    for (counter = 2; counter < 98; counter++) {
         sum = a + b;
 
         if (sum > max_int) {
