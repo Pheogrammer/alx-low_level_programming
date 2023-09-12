@@ -17,7 +17,7 @@ void print_char(char c)
  */
 void print_number(int n)
 {
-	char buffer[12];
+	char buffer[24];
 	int len;
 	int is_negative;
 
