@@ -1,15 +1,17 @@
 #include "main.h"
 #include <ctype.h>
-
 /**
- * is_alpha - checks if a character is alphabetic
- * @c: The character to check
+ * _isalpha - check tghe code.
  *
- * Return: 1 if c is a letter (lowercase or uppercase), 0 otherwise
+ * @c: character to check.
+ *
+ * Return: Always 0.
  */
-int _is_alpha(int c)
+int _isalpha(int c)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+	if (isalpha(c))
+	{
 		return (1);
+	}
 	return (0);
 }
