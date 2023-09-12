@@ -21,7 +21,7 @@ void print_to_98(int n)
                 int temp = n;
                 while (temp != 0)
                 {
-                    _putchar('0' + (temp % 10));
+                    _putchar((temp % 10)+'0');
                     temp /= 10;
                 }
             }
@@ -40,7 +40,7 @@ void print_to_98(int n)
             int temp = n;
             while (temp != 0)
             {
-                _putchar('0' + (temp % 10));
+                _putchar((temp % 10)+'0');
                 temp /= 10;
             }
 
