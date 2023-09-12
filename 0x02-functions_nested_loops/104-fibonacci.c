@@ -12,7 +12,7 @@ int main(void)
     unsigned int c[200] = {0};
     unsigned int temp[200] = {0};
 
-    int i, j;
+    int i, j, carry, leadingZero;
 
     a[0] = 1;
     b[0] = 1;
@@ -24,7 +24,7 @@ int main(void)
         putchar(',');
         putchar(' ');
 
-        int carry = 0;
+        carry = 0;
         for (j = 0; j < 200; j++)
         {
             c[j] = a[j] + b[j] + carry;
@@ -39,7 +39,7 @@ int main(void)
             }
         }
 
-        int leadingZero = 1;
+        leadingZero = 1;
         for (j = 199; j >= 0; j--)
         {
             if (c[j] != 0)
