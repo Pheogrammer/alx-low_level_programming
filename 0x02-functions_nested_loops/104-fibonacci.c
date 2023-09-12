@@ -11,11 +11,12 @@ int main(void)
 	  unsigned long temp;
 	  unsigned long divisor;
 	  unsigned long digit;
+	  int i;
 
     a = 1;
     b = 2;
     
-    int i;
+   
 
     putchar('1');
     for (i = 2; i < 98; i++)
