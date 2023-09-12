@@ -11,43 +11,53 @@ void print_char(char c)
 }
 
 /**
- * print_number - Prints an integer as a string to the standard output
+ * *add_large_numbers - Adds two large numbers represented as strings
  *
- * @n: The integer to be printed
+ * @num1: The first number as a string
+ * @num2: The second number as a string
+ *
+ * Returns: The sum as a dynamically allocated string
  */
-void print_number(long n)
+char *add_large_numbers(char *num1, char *num2)
 {
-	char buffer[24];
-	int len;
-	int is_negative;
+	int len1;
+	int len2;
+	int max_len;
+	int carry;
+	char *result;
 
-	len = 0;
-	is_negative = 0;
-	if (n < 0)
+	carry = 0;
+	len1 = strlen(num1);
+	len2 = strlen(num2);
+	max_len = (len1 > len2) ? len1 : len2;
+	*result = malloc(max_len + 2);
+
+	if (!result)
 	{
-		is_negative = 1;
-		n = -n;
+		perror("Memory allocation failed");
+		exit(EXIT_FAILURE);
 	}
-	if (n == 0)
+	result[max_len + 1] = '\0';
+
+	int i;
+	int j;
+	int k;
+
+	for (i = len1 - 1, j = len2 - 1, k = max_len; i >= 0 || j >= 0 || carry > 0; i--, j--, k--)
 	{
-		print_char('0');
-		return;
+
+		int digit1;
+		int digit2;
+		int sum;
+
+		digit1 = (i >= 0) ? (num1[i] - '0') : 0;
+		digit2 = (j >= 0) ? (num2[j] - '0') : 0;
+		sum = digit1 + digit2 + carry;
+		carry = sum / 10;
+		result[k] = (sum % 10) + '0';
 	}
-	while (n > 0)
-	{
-		buffer[len++] = (n % 10) + '0';
-		n /= 10;
-	}
-	if (is_negative)
-	{
-		buffer[len++] = '-';
-	}
-	while (len > 0)
-	{
-		print_char(buffer[--len]);
-	}
+	return (result);
 }
-
 /**
  * print_fibonacci - Prints the first 'count' Fibonacci numbers
  *
@@ -55,23 +65,24 @@ void print_number(long n)
  */
 void print_fibonacci(int count)
 {
-	int fib1;
-	int fib2;
-	int next;
+	int *fib1;
+	int *fib2;
+	char *next;
 	int i;
 
 	fib1 = 1;
 	fib2 = 2;
-	print_number(fib1);
+	print_char('1');
 	print_char(',');
 	print_char(' ');
-	print_number(fib2);
+	print_char('2');
 	for (i = 2; i < count; i++)
 	{
-		next = fib1 + fib2;
+		next = add_large_numbers(fib1, fib2);
 		print_char(',');
 		print_char(' ');
-		print_number(next);
+		write(1, next, strlen(next));
+		free(fib1)
 		fib1 = fib2;
 		fib2 = next;
 	}
