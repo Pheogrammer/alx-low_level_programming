@@ -12,7 +12,8 @@ int main(void)
 	unsigned long div;
 	unsigned long num;
 
-	fib[50] = {1, 2};
+	fib[0] = 1;
+	fib[1] = 2;
 	putchar('1');
 	putchar(',');
 	putchar(' ');
