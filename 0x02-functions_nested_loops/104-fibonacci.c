@@ -7,6 +7,7 @@
 void print_large_number(unsigned int num) {
     char buffer[20];
     int len = 0;
+    int i;
 
     if (num == 0) {
         putchar('0');
@@ -18,7 +19,7 @@ void print_large_number(unsigned int num) {
         num /= 10;
     }
 
-    for (int i = len - 1; i >= 0; i--) {
+    for (i = len - 1; i >= 0; i--) {
         putchar(buffer[i]);
     }
 }
