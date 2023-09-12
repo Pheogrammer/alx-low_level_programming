@@ -67,7 +67,6 @@ int main(void) {
             print_large_number(sum[0]);
         }
 
-        // Update a and b
         temp[0] = a[0];
         temp[1] = a[1];
         a[0] = b[0];
