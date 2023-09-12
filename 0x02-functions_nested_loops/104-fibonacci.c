@@ -1,54 +1,58 @@
 #include <stdio.h>
 
 /**
- * main - print first 98 Fibonacci numbers without using long long, malloc,
- * pointers, array/tables, or structures
+ * print_large_number - Print a large number using putchar
+ * @num: The large number to print
+ */
+void print_large_number(unsigned int num) {
+    char buffer[20];
+    int len = 0;
+
+    if (num == 0) {
+        putchar('0');
+        return;
+    }
+
+    while (num > 0) {
+        buffer[len++] = '0' + (num % 10);
+        num /= 10;
+    }
+
+    for (int i = len - 1; i >= 0; i--) {
+        putchar(buffer[i]);
+    }
+}
+
+/**
+ * main - Print the first 98 Fibonacci numbers without using long long, malloc,
+ *        pointers, arrays/tables, or structures
  * Return: 0
  */
+int main(void) {
+    unsigned int a = 1, b = 1, sum = 0;
+    unsigned int max_int = -1;
 
-int main(void)
-{
-	int counter, overflow, temp, i;
-	unsigned long a = 1, b = 1, sum = 0;
-	long a_head, a_tail, b_head, b_tail, sum_head, sum_tail;
+    putchar('1');
+    for (int counter = 2; counter < 98; counter++) {
+        sum = a + b;
 
-	putchar('1');
-	for (counter = 2; counter < 93; counter++) /* will still print */
-	{
-		sum = a + b;
-		a = b;
-		b = sum;
-		putchar(',');
-		putchar(' ');
-		while (sum > 0)
-		{
-			putchar('0' + sum % 10);
-			sum /= 10;
-		}
-	}
-	a_head = a / 1000000000; /* break larger num into 2 parts */
-	a_tail = a % 1000000000;
-	b_head = b / 1000000000;
-	b_tail = b % 1000000000;
-	for (; counter < 99; counter++)
-	{
-		overflow = (a_tail + b_tail) / 1000000000;
-		sum_tail = (a_tail + b_tail) - (1000000000 * overflow);
-		sum_head = (a_head + b_head) + overflow;
-		putchar(',');
-		putchar(' ');
-		while (sum_head > 0)
-		{
-			putchar('0' + sum_head % 10);
-			sum_head /= 10;
-		}
-		temp = sum_tail;
-		for (i = 0; i < 9; i++)
-		{
-			putchar('0' + temp / 100000000);
-			temp %= 100000000;
-		}
-	}
-	putchar('\n');
-	return (0);
+        if (sum > max_int) {
+            putchar(',');
+            putchar(' ');
+            print_large_number(sum / 1000000000);
+            print_large_number(sum % 1000000000);
+        } else {
+            putchar(',');
+            putchar(' ');
+            print_large_number(sum);
+        }
+
+        a = b;
+        b = sum;
+    }
+
+    putchar('\n');
+
+    return 0;
 }
+
