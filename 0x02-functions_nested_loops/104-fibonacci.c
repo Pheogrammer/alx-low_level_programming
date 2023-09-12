@@ -8,7 +8,7 @@ int main(void)
 {
     int count;
     unsigned long i, j, k;
-    unsigned long carry;
+    
 unsigned long temp;
 
     count = 0;
