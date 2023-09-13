@@ -6,7 +6,7 @@
  */
 void print_to_98(int n)
 {
-    long i;
+    int i;
 
     if (n <= 98)
     {
@@ -57,4 +57,3 @@ void print_to_98(int n)
 
     _putchar('\n');
 }
-
