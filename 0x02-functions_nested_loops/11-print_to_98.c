@@ -28,7 +28,7 @@ void print_to_98(int n)
                 i = -i;
             }
 
-            print_number((int)i);
+            print_number(i);
         }
     }
     else
@@ -51,7 +51,7 @@ void print_to_98(int n)
                 i = -i;
             }
 
-            print_number((int)i);
+            print_number(i);
         }
     }
 
