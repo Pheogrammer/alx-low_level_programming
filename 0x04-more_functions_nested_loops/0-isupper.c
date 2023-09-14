@@ -2,9 +2,12 @@
 #include <ctype.h>
 
 /**
- * _isupper- prints the upper alphabet followed by a new line
+ * _isupper - checks for uppercase character.
+ *
  * @c: character to check.
-*/
+ *
+ * Return: Always 0.
+ */
 int _isupper(int c)
 {
 	if (isupper(c))
