@@ -5,7 +5,7 @@
  * _isupper- prints the upper alphabet followed by a new line
  * @c: character to check.
 */
-void _isupper(int c)
+int _isupper(int c)
 {
 	if (isupper(c))
 	{
