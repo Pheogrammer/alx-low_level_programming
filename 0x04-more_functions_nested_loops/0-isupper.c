@@ -1,4 +1,5 @@
 #include "main.h"
+#include <ctype.h>
 
 /**
  * _isupper- prints the upper alphabet followed by a new line
