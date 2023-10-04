@@ -2,96 +2,70 @@
 #include <stdlib.h>
 #include "main.h"
 /**
- *word_len - finds the length of a word
- *@str:string to test
+ * strtow - splits a string into words
  *
- *Return:int
- */
-int word_len(char *str)
-{
-	int i = 0, len = 0;
-
-	while (*(str + i) && *(str + i) != ' ')
-	{
-		len++;
-		i++;
-	}
-	return (len);
-}
-/**
- *word_count - counts the number of words
+ * @str: the string to split
  *
- *@str:input
+ * Return: a pointer to an array of strings (words), or NULL on failure
  *
- *Return:(no. of words)
+ * Each element of the returned array contains a single word, null-terminated.
+ * The last element of the returned array is NULL.
+ * Words are separated by spaces.
  *
- */
-int word_count(char *str)
-{
-	int i = 0, len = 0, count = 0;
-
-	for (i = 0; *(str + i); i++)
-	{
-		len++;
-	}
-	for (i = 0; i < len; i++)
-	{
-		if (*(str + i) != ' ')
-		{
-			count++;
-			i += word_len(str + i);
-		}
-	}
-	return (count);
-}
-/**
- *strtow - splits a string into words
- *
- *@str:input
- *
- *Return:0 - success
- *
+ * The returned array must be freed with free() when no longer needed.
  */
 char **strtow(char *str)
 {
-	int i, words, w, letters, l;
-	char **p;
+  // Declare all variables before being used/assigned value
+  int num_words;
+  char **words;
+  int word_index;
+  char *start;
+  char *end;
 
-	if (str == NULL || str[0] == '\0')
-	{
-		return (NULL);
-	}
-	words = word_count(str);
-	if (words == 0)
-	{
-		return (NULL);
-	}
-	p = malloc(sizeof(char *) * (words + 1));
-	if (p == NULL)
-	{
-		return (NULL);
-	}
-	for (i = 0; i < words; i++)
-	{
-		while (*(str + w) == ' ')
-		{
-			w++;
-		}
-		letters = word_len(str + w);
-		p[i] = malloc(sizeof(char) * (letters + 1));
-		if (p[i] == NULL)
-		{
-			for (; i >= 0; i--)
-				free(p[i]);
-			free(p);
-			return (NULL);
-		}
-		for (l = 0; l < letters; l++)
-		{
-			p[i][l] = str[w++];
-		}
-		p[i][l] = '\0';
-	}
-	p[i] = NULL;
-	return (p);
+  // Check if str is NULL or empty
+  if (str == NULL || str == "") {
+    return NULL;
+  }
+
+  // Count the number of words in the string.
+  num_words = 1;
+  for (int i = 0; str[i] != '\0'; i++) {
+    if (str[i] == ' ') {
+      num_words++;
+    }
+  }
+
+  // Allocate memory for the array of words, including the null terminator.
+  words = malloc((num_words + 1) * sizeof(char *));
+  if (words == NULL) {
+    return NULL;
+  }
+
+  // Split the string into words and store them in the array.
+  word_index = 0;
+  start = str;
+  end = str;
+  while (*end != '\0') {
+    if (*end == ' ') {
+      // Add a null terminator to the current word.
+      *end = '\0';
+
+      // Add the current word to the array.
+      words[word_index++] = start;
+
+      // Start the next word at the next non-whitespace character.
+      start = end + 1;
+    }
+
+    end++;
+  }
+
+  // Add the last word to the array.
+  words[word_index++] = start;
+
+  // Add the NULL terminator to the end of the array.
+  words[word_index] = NULL;
+
+  return words;
 }
