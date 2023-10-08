@@ -215,7 +215,8 @@ int main(int argc, char *argv[])
 	{
 		if (final_prod[i] != 'x')
 		{
-			putchar(final_prod[i]);
+			char c = final_prod[i];
+			write(1, &c, 1);
 		}
 	}
 	putchar('\n');
