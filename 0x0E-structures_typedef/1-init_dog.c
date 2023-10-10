@@ -2,7 +2,7 @@
 /**
  *init_dog -initializes a variable of type dog
  *
- *@dog:struct
+ *@d:just for dog
  *@name:name of dog
  *@age:age of dog
  *@owner:name of owner
