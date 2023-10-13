@@ -1,37 +1,32 @@
-#include <stdio.h>
 #include <stdarg.h>
-#include <stdlib.h>
+#include <stdio.h>
+#include "main.h"
+
 /**
- *print_strings - prints strings passed to it
- *@separator:sep. two strings
- *@n:elements
+ * print_strings - function with 3 parameter
+ * @separator: char type pointer to string
+ * @n: unsigned int type
  *
- *Return:void
+ * Description: prints string followed by a new line
+ * Return: na
  */
 void print_strings(const char *separator, const unsigned int n, ...)
 {
 	unsigned int i;
-	va_list va;
+	va_list ap;
+	char *ptr;
 
-	const char *str;
-
-	if (n != 0)
+	va_start(ap, n);
+	for (i = 0; i < n; i++)
 	{
-		va_start(va, n);
-		for (i = 0; i < n; i++)
-		{
-			str = va_arg(va, char *);
-			if (str != NULL)
-				printf("%s", str);
-			else
-				printf("(nil)");
-
-			if (i != (n - 1) && separator != NULL)
-			{
-				printf("%s", separator);
-			}
-		}
-		va_end(va);
+		ptr = va_arg(ap, char *);
+		if (ptr != NULL)
+			printf("%s", ptr);
+		else
+			printf("(nil)");
+		if (i < (n - 1) && separator != NULL)
+			printf("%s", separator);
 	}
 	printf("\n");
+	va_end(ap);
 }

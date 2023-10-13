@@ -1,32 +1,29 @@
-#include <stdio.h>
 #include <stdarg.h>
-#include <stdlib.h>
+#include <stdio.h>
+#include "main.h"
+
 /**
- *print_numbers - prints numbers followed by newline
+ * print_numbers - function with two arguments
+ * @separator: char type pointer
+ * @n: unsigned int type const
  *
- *@separator:string to be printed b2n no.
- *
- *@n:no. of elements
- *
- *Return:void
+ * Description: prints numbers, followed by a new line
+ * Return: na
  */
 void print_numbers(const char *separator, const unsigned int n, ...)
 {
-	va_list va;
-	unsigned int i = 0;
+	unsigned int i;
+	va_list ap;
 
-	if (n != 0)
+	va_start(ap, n);
+	for (i = 0; i < n; i++)
 	{
-		va_start(va, n);
-		for (i = 0; i <= (n - 1); i++)
+		printf("%d", va_arg(ap, int));
+		if (i < (n - 1) && separator)
 		{
-			printf("%d", va_arg(va, int));
-			if (i < (n - 1) && separator != NULL)
-			{
-				printf("%s", separator);
-			}
+			printf("%s", separator);
 		}
 	}
 	printf("\n");
-	va_end(va);
+	va_end(ap);
 }

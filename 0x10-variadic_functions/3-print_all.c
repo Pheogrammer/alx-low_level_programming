@@ -1,53 +1,48 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <stdarg.h>
+#include "main.h"
+
 /**
- *print_all - prints any type of character
+ * print_all - function with 2 parameter
+ * @format: char type pointer to string
  *
- *@format:format
- *
- *Return:void
+ * Description: prints anything followed by a new line
+ * Return: na
  */
 void print_all(const char * const format, ...)
 {
-	int i = 0;
-	char *str, *sprtr = "";
+	int j;
+	char *str;
+	char *space;
+	va_list ap;
 
-	va_list va;
-
-	va_start(va, format);
-
-	if (format)
+	va_start(ap, format);
+	j = 0;
+	while (format && format[j])
 	{
-		while (format[i] != '\0')
+		space = "";
+		if (format[j + 1])
+			space = ", ";
+		switch (format[j])
 		{
-			switch (format[i])
-			{
-			case 'c':
-				printf("%s%c", sprtr, va_arg(va, int));
-				break;
-			case 'i':
-				printf("%s%d", sprtr, va_arg(va, int));
-				break;
-			case 'f':
-				printf("%s%f", sprtr, va_arg(va, double));
-				break;
-			case 's':
-				str = va_arg(va, char *);
-				if (str == NULL)
-				{
-					str = "(nil)";
-				}
-				printf("%s%s", sprtr, str);
-				break;
-			default:
-				i++;
-				continue;
-			}
-			sprtr = ", ";
-			i++;
+
+		case 'c':
+			printf("%c%s", va_arg(ap, int), space);
+			break;
+		case 'i':
+			printf("%d%s", va_arg(ap, int), space);
+			break;
+		case 'f':
+			printf("%f%s", va_arg(ap, double), space);
+			break;
+		case 's':
+			str = va_arg(ap, char *);
+			if (!str || !*str)
+				str = "(nil)";
+			printf("%s%s", str, space);
+			break;
 		}
+		j++;
 	}
 	printf("\n");
-	va_end(va);
 }
