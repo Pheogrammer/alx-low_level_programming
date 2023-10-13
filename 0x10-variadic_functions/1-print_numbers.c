@@ -1,30 +1,32 @@
-#include <stdarg.h>
 #include <stdio.h>
+#include <stdarg.h>
 #include <stdlib.h>
 /**
- * print_numbers - prints integer arguments with a separator
+ *print_numbers - prints numbers followed by newline
  *
- * @separator: - thing to print between numbers
- * @n: - number of arguments
+ *@separator:string to be printed b2n no.
  *
- * Return: void
+ *@n:no. of elements
+ *
+ *Return:void
  */
 void print_numbers(const char *separator, const unsigned int n, ...)
 {
-	char *sep;
-	unsigned int i;
-	va_list list;
+	va_list va;
+	unsigned int i = 0;
 
-	if (separator == NULL || *separator == 0)
-		sep = "";
-	else
-		sep = (char *) separator;
-	va_start(list, n);
-
-	if (n > 0)
-		printf("%d", va_arg(list, int));
-	for (i = 1; i < n; i++)
-		printf("%s%d", sep, va_arg(list, int));
+	if (n != 0)
+	{
+		va_start(va, n);
+		for (i = 0; i <= (n - 1); i++)
+		{
+			printf("%d", va_arg(va, int));
+			if (i < (n - 1) && separator != NULL)
+			{
+				printf("%s", separator);
+			}
+		}
+	}
 	printf("\n");
-	va_end(list);
+	va_end(va);
 }
