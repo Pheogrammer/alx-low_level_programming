@@ -1,26 +1,21 @@
 #include <stdarg.h>
-#include "main.h"
 
 /**
- * sum_them_all - function with two arguments
- * @n: int type first argume t
+ * sum_them_all - return the sum of all its paremeters
+ * @n: the number of arguments to be added
  *
- * Description: returns the sum of all its parameters
- * Return: value of sum or 0
+ * Return: sum or zero.
  */
 int sum_them_all(const unsigned int n, ...)
 {
-	unsigned int i;
-	int sum = 0;
-	va_list arg;
+	unsigned int total, i;
+	va_list ls;
 
 	if (n == 0)
 		return (0);
-	va_start(arg, n);
+	va_start(ls, n);
 	for (i = 0; i < n; i++)
-	{
-		sum += va_arg(arg, int);
-	}
-	va_end(arg);
-	return (sum);
+		total += va_arg(ls, int);
+	va_end(ls);
+	return (total);
 }

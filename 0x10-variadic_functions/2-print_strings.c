@@ -1,32 +1,32 @@
 #include <stdarg.h>
+#include <stdlib.h>
 #include <stdio.h>
-#include "main.h"
 
 /**
- * print_strings - function with 3 parameter
- * @separator: char type pointer to string
- * @n: unsigned int type
+ * print_strings - prints strings then a new line
+ * @separator: string between two strings
+ * @n: number of strings passed to the function
  *
- * Description: prints string followed by a new line
- * Return: na
+ * Return: Nothing.
  */
 void print_strings(const char *separator, const unsigned int n, ...)
 {
 	unsigned int i;
-	va_list ap;
-	char *ptr;
+	char *st;
+	va_list strs;
 
-	va_start(ap, n);
+	if (separator == NULL)
+		separator = "";
+	va_start(strs, n);
 	for (i = 0; i < n; i++)
 	{
-		ptr = va_arg(ap, char *);
-		if (ptr != NULL)
-			printf("%s", ptr);
-		else
-			printf("(nil)");
-		if (i < (n - 1) && separator != NULL)
+		st = va_arg(strs, char *);
+		if (st == NULL)
+			st = "(nil)";
+		printf("%s", st);
+		if (i < n - 1)
 			printf("%s", separator);
 	}
 	printf("\n");
-	va_end(ap);
+	va_end(strs);
 }

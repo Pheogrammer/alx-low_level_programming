@@ -1,29 +1,26 @@
 #include <stdarg.h>
+#include <stdlib.h>
 #include <stdio.h>
-#include "main.h"
 
 /**
- * print_numbers - function with two arguments
- * @separator: char type pointer
- * @n: unsigned int type const
+ * print_numbers - prints numbers then a new line
+ * @separator: comma
+ * @n: number of parameter to be printed
  *
- * Description: prints numbers, followed by a new line
- * Return: na
+ * Return: Nothing.
  */
 void print_numbers(const char *separator, const unsigned int n, ...)
 {
 	unsigned int i;
-	va_list ap;
+	va_list nums;
 
-	va_start(ap, n);
+	va_start(nums, n);
 	for (i = 0; i < n; i++)
 	{
-		printf("%d", va_arg(ap, int));
-		if (i < (n - 1) && separator)
-		{
+		printf("%d", va_arg(nums, int));
+		if (i < n - 1 && separator != NULL)
 			printf("%s", separator);
-		}
 	}
 	printf("\n");
-	va_end(ap);
+	va_end(nums);
 }
