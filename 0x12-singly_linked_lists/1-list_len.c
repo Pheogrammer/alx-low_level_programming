@@ -1,4 +1,4 @@
-#include "main.h"
+#include "lists.h"
 
 /**
   *list_len - give the number of elements in a list.
