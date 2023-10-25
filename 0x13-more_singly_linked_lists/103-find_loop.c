@@ -1,8 +1,3 @@
-/*
- * File: 103-find_loop.c
- * Auth: David James Taiye
- */
-
 #include "lists.h"
 
 /**
