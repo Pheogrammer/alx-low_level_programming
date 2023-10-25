@@ -1,4 +1,4 @@
-#include "lists.h"
+#include "holberton.h"
 #include <stdio.h>
 #include <stdlib.h>
 /**
@@ -8,13 +8,12 @@
  */
 size_t print_listint(const listint_t *h)
 {
-	int i;
+	unsigned int i;
 
-	if (h == NULL)
-		return (0);
-	for (i = 0; h; i++)
+	while (h != NULL)
 	{
-		printf("%d\n", h->n);
+		printf("%i", h->n);
+		i++;
 		h = h->next;
 	}
 	return (i);
