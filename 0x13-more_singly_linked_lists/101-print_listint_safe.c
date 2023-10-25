@@ -1,7 +1,3 @@
-/*
- * File: 101-print_listint_safe.c
- * Auth: David James Taiye
- */
 #include "lists.h"
 #include <stdio.h>
 
