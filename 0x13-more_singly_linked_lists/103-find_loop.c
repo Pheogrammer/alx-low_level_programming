@@ -1,41 +1,46 @@
-#include "lists.h"
-#include <stdio.h>
-#include <stdlib.h>
-/**
- *find_common_node - finds a common node in a looped linked list
- *@hare:faster incrementing pointer
- *@tortoise:slower pointer
- *Return:address to common node,NULL otherwise
+/*
+ * File: 103-find_loop.c
+ * Auth: David James Taiye
  */
-listint_t *find_common_node(listint_t *hare, listint_t *tortoise)
-{
-	while (hare && tortoise && hare->next)
-	{
-		hare = hare->next->next;
-		tortoise = tortoise->next;
-		if (hare == tortoise)
-			return (tortoise);
-	}
-	return (NULL);
-}
+
+#include "lists.h"
+
 /**
- *find_listint_loop - finds an occurrence of  loop in a list and returns
- *head node
- *@head:pointer to listint node
- *Return:pointer to head if true,NULL otherwise
+ * find_listint_loop - Finds the loop contained in
+ *                     a listint_t linked list.
+ * @head: A pointer to the head of the listint_t list.
+ *
+ * Return: If there is no loop - NULL.
+ *         Otherwise - the address of the node where the loop starts.
  */
 listint_t *find_listint_loop(listint_t *head)
 {
-	listint_t *hare = head, *tortoise = head;
+	listint_t *tortoise, *hare;
 
-	tortoise = find_common_node(hare, tortoise);
-	if (tortoise == NULL)
+	if (head == NULL || head->next == NULL)
 		return (NULL);
-	hare = head;
-	while (hare != tortoise)
+
+	tortoise = head->next;
+	hare = (head->next)->next;
+
+	while (hare)
 	{
-		hare = hare->next;
+		if (tortoise == hare)
+		{
+			tortoise = head;
+
+			while (tortoise != hare)
+			{
+				tortoise = tortoise->next;
+				hare = hare->next;
+			}
+
+			return (tortoise);
+		}
+
 		tortoise = tortoise->next;
+		hare = (hare->next)->next;
 	}
-	return (hare);
+
+	return (NULL);
 }

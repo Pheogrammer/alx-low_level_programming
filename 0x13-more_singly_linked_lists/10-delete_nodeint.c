@@ -1,48 +1,46 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "lists.h"
+
 /**
- *delete_nodeint_at_index - deletes a node at a certain index
- *@head:pointer to the nodeint list
- *@index:index to delete at
- *Return:(1) - success (-1) - otherwise
- */
+ * delete_nodeint_at_index - deletes the node at index of a listint_t list.
+ * @head: pointer to the list.
+ * @index: position of the node to delete.
+ * Return: 1 if it succeeded, -1 if it failed.
+ **/
 int delete_nodeint_at_index(listint_t **head, unsigned int index)
 {
-	unsigned int i = 0;
-	listint_t *temp, *node;
+	listint_t *aux_node = *head;
+	listint_t *node_to_delete = *head;
+	unsigned int idx;
+	unsigned int array = 0;
 
-	if (head == NULL || *head == NULL)
-	{
+	/* border case for empty list */
+	if (!(*head))
 		return (-1);
-	}
-	if (i == index)
+
+	/* border case for delete at the beginning */
+	if (index == 0)
 	{
-		if (*head)
-		{
-			temp = *head;
-			*head = (*head)->next;
-			free(temp);
-			return (1);
-		}
+		*head = node_to_delete->next;
+		free(node_to_delete);
+		return (1);
 	}
-	else
+
+	/* search of position to delete */
+	idx = index - 1;
+	while (aux_node && array != idx)
 	{
-		temp = *head;
-		while (i < (index - 1) && temp)
-		{
-			i++;
-			temp = temp->next;
-		}
-		if (temp)
-		{
-			node = temp;
-			temp = temp->next;
-			node->next = temp->next;
-			free(temp);
-		}
-		else
-			return (-1);
+		array++;
+		aux_node = aux_node->next;
 	}
-	return (1);
+
+	/* general case */
+	if (array == idx && aux_node)
+	{
+		node_to_delete = aux_node->next;
+		aux_node->next = node_to_delete->next;
+		free(node_to_delete);
+		return (1);
+	}
+
+	return (-1);
 }
